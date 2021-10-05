@@ -4,7 +4,7 @@ services:
       restart: always
       command : bash -c "python manage.py makemigrations &&
                 python manage.py migrate &&
-                python manage.py runserver"
+                python manage.py runserver 0.0.0.0:8000"
       build:
         dockerfile: Dockerfile
         context: ./auth_server
@@ -20,4 +20,4 @@ services:
       ports:
         - '3000:3000'
       environment:
-      - REACT_APP_SERVER_API=8000
+      - REACT_APP_SERVER_API=http://localhost:8000/api
