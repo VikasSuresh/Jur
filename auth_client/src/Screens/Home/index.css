@@ -1,0 +1,10 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.pad {
+  padding-top: 175px;
+  padding-left: 50px;
+}
