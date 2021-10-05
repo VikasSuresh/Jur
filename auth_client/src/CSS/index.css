@@ -1,0 +1,53 @@
+p{
+    color: grey;
+    font-size: 14px;
+}
+
+h4{
+    font-weight: 300;
+}
+
+.form {
+    padding-top: 100px;
+    float: none;
+    margin: 0 auto;
+    align-content: center;
+    align-items: center;
+}
+
+.Show{
+    opacity: 0.5;
+    font-size: 13px;
+}
+
+.Hide{
+    color:#018dff;
+    opacity: 0.5;
+    font-size: 13px;
+}
+
+.required{
+    color:#ff0000
+}
+
+#footer{
+    text-align: center;
+    padding-top: 20%;
+    padding-bottom: 15%;
+}
+
+.SignUp{
+    padding-top: 40px;
+    float: right;
+    padding-right: 100px;
+}
+
+#forgot{
+    float: right;
+}
+
+.SignIn{
+    padding-top: 40px;
+    float: right;
+    padding-right: 100px;
+}
