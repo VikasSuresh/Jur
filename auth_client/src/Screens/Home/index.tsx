@@ -8,7 +8,7 @@ const Home = () => (
         <div className="container-fluid">
             <div className="row">
                 <div className="col-sm-4 pad" style={{ height: '100vh', background: '#f4f5fa' }}>
-                    <h3>{'Let\'s Start'}</h3>
+                    <h3>Let&apos;s Start</h3>
                     <p>
                         {`LLorem Ipsum is simply dummy text of the printing and typesetting industry.
                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -19,7 +19,7 @@ const Home = () => (
                     </p>
                 </div>
                 <div className="col-8 center">
-                    <button type="button" className="btn btn-primary">{'Let\'s Start'}</button>
+                    <button type="button" className="btn btn-primary">Let&apos;s Start</button>
                 </div>
             </div>
         </div>

@@ -84,7 +84,7 @@ const SignIn = () => {
             <div className="col-6 form" style={{ paddingTop: '170px' }}>
                 <h4>Sign In</h4>
 
-                <p>{'Let\'s get started with Jur'}</p>
+                <p>Let&apos;s get started with Jur</p>
                 <p style={{ color: 'red' }}>
                     {errorWhenSubmitting}
                 </p>
