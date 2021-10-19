@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 const StaticLeft = () => (
-    <div className="col-sm-4" style={{ height: 'vmax', background: '#f4f5fa' }}>
+    <div className="col-sm-4 staticLeft">
         <a className="navbar-brand " href="/">
             <img className="nameImage" src="name.png" alt="Jur" />
         </a>

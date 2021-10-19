@@ -11,7 +11,7 @@ const Nav = () => {
         <nav className="navbar fixed-top navbar-light bg-light">
             <div className="container-fluid">
                 <a className="navbar" href="/">
-                    <img src="name.png" alt="Jur" style={{ width: '70px' }} />
+                    <img id="navbarImg" src="name.png" alt="Jur" />
                 </a>
                 <div className="float-right">
                     <button
