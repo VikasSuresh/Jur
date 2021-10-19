@@ -100,7 +100,7 @@ const SignUp = () => {
             <div className="col-6 form">
                 <h4>Sign Up</h4>
 
-                <p>{'Let\'s get started with Jur'}</p>
+                <p>Let&apos;s get started with Jur</p>
                 <p style={{ color: 'red' }}>
                     {errorWhenSubmitting}
                 </p>
