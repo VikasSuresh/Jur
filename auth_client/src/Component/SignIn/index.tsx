@@ -45,7 +45,7 @@ const SignIn = () => {
         if (!emailRegEx.test(email)) {
             setError((state) => ([
                 ...state,
-                'email_err',
+                'emailErr',
             ]));
         } else {
             try {
@@ -57,7 +57,7 @@ const SignIn = () => {
                 localStorage.setItem('token', JSON.stringify(data.token));
                 window.location.href = '/';
             } catch (error) {
-                setError(['invalid_cred']);
+                setError(['invalidCred']);
             }
         }
     };
@@ -66,9 +66,9 @@ const SignIn = () => {
 
     let errorWhenSubmitting;
 
-    if (err.includes('email_err')) {
+    if (err.includes('emailErr')) {
         errorWhenSubmitting = 'It must be a Valid Email!';
-    } else if (err.includes('invalid_cred')) {
+    } else if (err.includes('invalidCred')) {
         errorWhenSubmitting = 'Invalid Credentials';
     } else {
         errorWhenSubmitting = '';
