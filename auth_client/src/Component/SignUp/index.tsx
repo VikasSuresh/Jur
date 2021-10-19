@@ -54,13 +54,13 @@ const SignUp = () => {
         if (!emailRegEx.test(email)) {
             setError((state) => ([
                 ...state,
-                'email_err',
+                'emailErr',
             ]));
         } else if (password !== verify || !passwordRegex.test(password)) {
-            if (err.filter((el) => el === 'password_verify_err').length === 0) {
+            if (err.filter((el) => el === 'passwordVerifyErr').length === 0) {
                 setError((state) => ([
                     ...state,
-                    'password_verify_err',
+                    'passwordVerifyErr',
                 ]));
             }
         } else {
@@ -72,7 +72,7 @@ const SignUp = () => {
                 localStorage.setItem('token', JSON.stringify(data.token));
                 window.location.href = '/';
             } catch (error) {
-                setError(['username_err']);
+                setError(['usernameErr']);
             }
         }
     };
@@ -80,11 +80,11 @@ const SignUp = () => {
     const activateSignUp = checkData();
     let errorWhenSubmitting;
 
-    if (err.includes('password_verify_err')) {
+    if (err.includes('passwordVerifyErr')) {
         errorWhenSubmitting = 'Password Must Have 8-16 char with 1 symbol and Verify - Password must be the same.';
-    } else if (err.includes('email_err')) {
+    } else if (err.includes('emailErr')) {
         errorWhenSubmitting = 'It must be a Valid Email!';
-    } else if (err.includes('username_err')) {
+    } else if (err.includes('usernameErr')) {
         errorWhenSubmitting = 'User with this Email already exists.';
     } else {
         errorWhenSubmitting = '';
