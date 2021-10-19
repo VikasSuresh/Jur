@@ -30,7 +30,13 @@ h4{
     color:#ff0000
 }
 
-#footer{
+#signInFooter{
+    text-align: center;
+    padding-top: 50%;
+    padding-bottom: 15%;
+}
+
+#signUpfooter{
     text-align: center;
     padding-top: 20%;
     padding-bottom: 15%;
@@ -50,4 +56,16 @@ h4{
     padding-top: 40px;
     float: right;
     padding-right: 100px;
+}
+
+#signInForm{
+    padding-top: 170px;
+}
+
+#error{
+    color: red;
+}
+
+#visibility{
+    z-index: 100;
 }

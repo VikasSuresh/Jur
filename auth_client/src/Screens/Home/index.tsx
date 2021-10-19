@@ -7,7 +7,7 @@ const Home = () => (
         <Nav />
         <div className="container-fluid">
             <div className="row">
-                <div className="col-sm-4 pad" style={{ height: '100vh', background: '#f4f5fa' }}>
+                <div className="col-sm-4 pad">
                     <h3>Let&apos;s Start</h3>
                     <p>
                         {`LLorem Ipsum is simply dummy text of the printing and typesetting industry.

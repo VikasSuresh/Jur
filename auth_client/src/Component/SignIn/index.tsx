@@ -81,11 +81,11 @@ const SignIn = () => {
                 <a href="/register">Sign Up</a>
             </div>
 
-            <div className="col-6 form" style={{ paddingTop: '170px' }}>
+            <div className="col-6 form" id="signInForm">
                 <h4>Sign In</h4>
 
                 <p>Let&apos;s get started with Jur</p>
-                <p style={{ color: 'red' }}>
+                <p id="error">
                     {errorWhenSubmitting}
                 </p>
                 <form className="row g-3">
@@ -125,8 +125,8 @@ const SignIn = () => {
                         />
                         <button
                             className="btn bg-white border-start-0 border ms-n3"
+                            id="visibility"
                             type="button"
-                            style={{ zIndex: 100 }}
                             onClick={() => setShow((state: any) => !state)}
                         >
                             <span className={show ? 'Show' : 'Hide'}>{show ? 'Show' : 'Hide'}</span>
@@ -156,7 +156,7 @@ const SignIn = () => {
                         </button>
                     </div>
                 </form>
-                <div id="footer" style={{ paddingTop: '50%' }}>Copyright &copy;2021 Product By Jur Inc.</div>
+                <div id="signInFooter">Copyright &copy;2021 Product By Jur Inc.</div>
             </div>
         </div>
     );

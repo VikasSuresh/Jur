@@ -101,7 +101,7 @@ const SignUp = () => {
                 <h4>Sign Up</h4>
 
                 <p>Let&apos;s get started with Jur</p>
-                <p style={{ color: 'red' }}>
+                <p id="error">
                     {errorWhenSubmitting}
                 </p>
                 <form className="row g-3">
@@ -171,7 +171,7 @@ const SignUp = () => {
                         <button
                             className="btn bg-white border-start-0 border ms-n3"
                             type="button"
-                            style={{ zIndex: 100 }}
+                            id="visibility"
                             onClick={() => setShow((state: any) => ({ ...state, password: !state.password }))}
                         >
                             <span className={show.password ? 'Show' : 'Hide'}>{show.password ? 'Show' : 'Hide'}</span>
@@ -196,7 +196,7 @@ const SignUp = () => {
                         <button
                             className="btn bg-white border-start-0 border ms-n3"
                             type="button"
-                            style={{ zIndex: 100 }}
+                            id="visiblity"
                             onClick={() => setShow((state: any) => ({ ...state, verify: !state.verify }))}
                         >
                             <span className={show.verify ? 'Show' : 'Hide'}>{show.verify ? 'Show' : 'Hide'}</span>
@@ -230,7 +230,7 @@ const SignUp = () => {
                         </button>
                     </div>
                 </form>
-                <div id="footer">Copyright &copy;2021 Product By Jur Inc.</div>
+                <div id="signUpfooter">Copyright &copy;2021 Product By Jur Inc.</div>
             </div>
         </div>
     );

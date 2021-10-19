@@ -7,4 +7,6 @@
 .pad {
   padding-top: 175px;
   padding-left: 50px;
+  height: 100vh;
+  background: #f4f5fa;
 }
