@@ -1,16 +1,7 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import '../../CSS/index.css';
 import { emailRegEx, passwordRegex } from '../../Helpers';
-
-interface RegisterResponse {
-    username: String
-    user: {
-        username: String,
-        email: String,
-    },
-    token: String
-}
+import Store from '../../Store';
 
 const SignUp = () => {
     const [user, setUser] = useState({
@@ -65,12 +56,7 @@ const SignUp = () => {
             }
         } else {
             try {
-                const { data }: { data: RegisterResponse } = await axios.post(`${process.env.REACT_APP_SERVER_API}/auth/register/`,
-                    { username: `${first} ${last}`, email, password },
-                    { withCredentials: true });
-                localStorage.setItem('name', JSON.stringify(data.user.username));
-                localStorage.setItem('token', JSON.stringify(data.token));
-                window.location.href = '/';
+                Store.signUp(first, last, email, password);
             } catch (error) {
                 setError(['usernameErr']);
             }

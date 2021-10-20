@@ -1,16 +1,7 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import '../../CSS/index.css';
 import { emailRegEx } from '../../Helpers';
-
-interface LoginResponse {
-    detail: String,
-    user: {
-        username: String,
-        email: String,
-    },
-    token: String
-}
+import Store from '../../Store';
 
 const SignIn = () => {
     const [user, setUser] = useState({
@@ -49,13 +40,7 @@ const SignIn = () => {
             ]));
         } else {
             try {
-                const { data }: { data: LoginResponse } = await axios.post(`${process.env.REACT_APP_SERVER_API}/auth/login/`,
-                    { email, password },
-                    { withCredentials: true });
-
-                localStorage.setItem('name', JSON.stringify(data.user.username));
-                localStorage.setItem('token', JSON.stringify(data.token));
-                window.location.href = '/';
+                Store.signIn(email, password);
             } catch (error) {
                 setError(['invalidCred']);
             }
