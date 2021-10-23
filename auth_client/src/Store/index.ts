@@ -19,7 +19,7 @@ interface LoginResponse {
         username: String,
         email: String,
     },
-    token: String
+    access: String
 }
 
 class User {
@@ -98,26 +98,33 @@ class User {
     }
 
     async signUp(first: string, last: string, email: string, password: string) {
-        const { data }: { data: RegisterResponse } = await axios.post(`${process.env.REACT_APP_SERVER_API}/auth/register/`,
-            { username: `${first} ${last}`, email, password },
-            { withCredentials: true });
-        localStorage.setItem('name', JSON.stringify(data.user.username));
-        localStorage.setItem('token', JSON.stringify(data.token));
-        window.location.href = '/';
+        try {
+            const { data }: { data: RegisterResponse } = await axios.post(`${process.env.REACT_APP_SERVER_API}/auth/register/`,
+                { username: `${first} ${last}`, email, password },
+                { withCredentials: true });
+            localStorage.setItem('name', JSON.stringify(data.user.username));
+            localStorage.setItem('token', JSON.stringify(data.token));
+            window.location.href = '/';
 
-        this.user.name = '';
+            this.user.name = '';
+        } catch (error) {
+            this.setError('usernameErr');
+        }
     }
 
     async signIn(email: string, password: string) {
-        const { data }: { data: LoginResponse } = await axios.post(`${process.env.REACT_APP_SERVER_API}/auth/login/`,
-            { email, password },
-            { withCredentials: true });
+        try {
+            const { data }: { data: LoginResponse } = await axios.post(`${process.env.REACT_APP_SERVER_API}/auth/login/`,
+                { email, password },
+                { withCredentials: true });
+            localStorage.setItem('name', JSON.stringify(data.user.username));
+            localStorage.setItem('token', JSON.stringify(data.access));
+            window.location.href = '/';
 
-        localStorage.setItem('name', JSON.stringify(data.user.username));
-        localStorage.setItem('token', JSON.stringify(data.token));
-        window.location.href = '/';
-
-        this.user.name = '';
+            this.user.name = '';
+        } catch (error) {
+            this.setError('invalidCred');
+        }
     }
 
     async logout() {

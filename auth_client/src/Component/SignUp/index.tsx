@@ -28,11 +28,7 @@ const SignUp = observer(() => {
                 Store.setError('passwordVerifyErr');
             }
         } else {
-            try {
-                Store.signUp(first, last, email, password);
-            } catch (error) {
-                Store.setError('usernameErr');
-            }
+            Store.signUp(first, last, email, password);
         }
     };
 
