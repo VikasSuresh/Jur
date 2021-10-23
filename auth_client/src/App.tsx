@@ -2,15 +2,16 @@ import React from 'react';
 import {
     BrowserRouter as Router, Switch, Route,
 } from 'react-router-dom';
-import { Login, Register, Home } from './Screens';
+import { SignIn, SignUp } from './Component';
+import { Auth, Home } from './Screens';
 import { ProtectedRoute } from './Helpers';
 
 const App = () => (
     <div>
         <Router>
             <Switch>
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
+                <Route path="/login" render={() => <Auth passedComponent={SignIn} />} />
+                <Route path="/register" render={() => <Auth passedComponent={SignUp} />} />
                 <ProtectedRoute path="/" component={Home} />
             </Switch>
         </Router>

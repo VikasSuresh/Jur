@@ -1,17 +1,17 @@
 import React from 'react';
-import { StaticLeft, SignIn } from '../../Component';
+import { StaticLeft } from '../../Component';
 
-const Login = () => (
+const Auth = ({ passedComponent: PassedComponent }: any) => (
     <div>
         <div className="container-fluid">
             <div className="row">
                 <StaticLeft />
                 <div className="col-8">
-                    <SignIn />
+                    <PassedComponent />
                 </div>
             </div>
         </div>
     </div>
 );
 
-export default Login;
+export default Auth;
