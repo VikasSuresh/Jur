@@ -1,29 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../CSS/index.css';
+import { observer } from 'mobx-react';
 import { emailRegEx } from '../../Helpers';
 import Store from '../../Store';
 
-const SignIn = () => {
-    const [user, setUser] = useState({
-        email: '',
-        password: '',
-        check: false,
-    });
-
-    const [show, setShow] = useState(true);
-
-    const [err, setError] = useState<String[]>([]);
-
-    const errorHandler = (e: any) => {
-        setError((state) => (
-            e.target.value === '' ? [e.target.id, ...state] : state.filter((el) => el !== e.target.id)
-        ));
-    };
-
+const SignIn = observer(() => {
     const checkData = () => {
         const {
             email, password,
-        } = user;
+        } = Store.user;
 
         if (email && password) {
             return false;
@@ -32,17 +17,14 @@ const SignIn = () => {
     };
 
     const submit = async () => {
-        const { email, password } = user;
+        const { email, password } = Store.user;
         if (!emailRegEx.test(email)) {
-            setError((state) => ([
-                ...state,
-                'emailErr',
-            ]));
+            Store.setError('emailErr');
         } else {
             try {
                 Store.signIn(email, password);
             } catch (error) {
-                setError(['invalidCred']);
+                Store.setError('invalidCred');
             }
         }
     };
@@ -50,6 +32,8 @@ const SignIn = () => {
     const activateSignIn = checkData();
 
     let errorWhenSubmitting;
+
+    const { err } = Store.user;
 
     if (err.includes('emailErr')) {
         errorWhenSubmitting = 'It must be a Valid Email!';
@@ -85,8 +69,8 @@ const SignIn = () => {
                             id="email"
                             placeholder="Email Address"
                             onChange={(e) => {
-                                setUser((state: any) => ({ ...state, email: e.target.value }));
-                                errorHandler(e);
+                                Store.setEmail(e.target.value);
+                                Store.errorHandler(e);
                             }}
                         />
                     </div>
@@ -98,23 +82,23 @@ const SignIn = () => {
                     </div>
                     <div className="input-group mb-3">
                         <input
-                            type={show ? 'password' : 'text'}
+                            type={Store.user.show ? 'password' : 'text'}
                             className={err.includes('password') ? 'form-control is-invalid' : 'form-control'}
                             autoComplete="on"
                             id="password"
                             placeholder="Password"
                             onChange={(e) => {
-                                setUser((state: any) => ({ ...state, password: e.target.value }));
-                                errorHandler(e);
+                                Store.setPassword(e.target.value);
+                                Store.errorHandler(e);
                             }}
                         />
                         <button
                             className="btn bg-white border-start-0 border ms-n3"
                             id="visibility"
                             type="button"
-                            onClick={() => setShow((state: any) => !state)}
+                            onClick={() => Store.setShow()}
                         >
-                            <span className={show ? 'Show' : 'Hide'}>{show ? 'Show' : 'Hide'}</span>
+                            <span className={Store.user.show ? 'Show' : 'Hide'}>{Store.user.show ? 'Show' : 'Hide'}</span>
                         </button>
                     </div>
 
@@ -124,7 +108,7 @@ const SignIn = () => {
                                 className="form-check-input"
                                 type="checkbox"
                                 id="gridCheck"
-                                onChange={(e) => setUser((state: any) => ({ ...state, check: e.target.checked }))}
+                                onChange={(e) => Store.setCheck(e.target.checked)}
                             />
                             Remember Me
                         </div>
@@ -145,6 +129,6 @@ const SignIn = () => {
             </div>
         </div>
     );
-};
+});
 
 export default SignIn;
