@@ -82,7 +82,7 @@ const SignIn = observer(() => {
                     </div>
                     <div className="input-group mb-3">
                         <input
-                            type={Store.user.show ? 'password' : 'text'}
+                            type={Store.user.showPassword ? 'password' : 'text'}
                             className={err.includes('password') ? 'form-control is-invalid' : 'form-control'}
                             autoComplete="on"
                             id="password"
@@ -98,7 +98,7 @@ const SignIn = observer(() => {
                             type="button"
                             onClick={() => Store.setShow()}
                         >
-                            <span className={Store.user.show ? 'Show' : 'Hide'}>{Store.user.show ? 'Show' : 'Hide'}</span>
+                            <span className={Store.user.showPassword ? 'Show' : 'Hide'}>{Store.user.showPassword ? 'Show' : 'Hide'}</span>
                         </button>
                     </div>
 
