@@ -21,11 +21,7 @@ const SignIn = observer(() => {
         if (!emailRegEx.test(email)) {
             Store.setError('emailErr');
         } else {
-            try {
-                Store.signIn(email, password);
-            } catch (error) {
-                Store.setError('invalidCred');
-            }
+            Store.signIn(email, password);
         }
     };
 
