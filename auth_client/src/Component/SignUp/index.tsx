@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../CSS/index.css';
+import { observer } from 'mobx-react';
 import { emailRegEx, passwordRegex } from '../../Helpers';
 import Store from '../../Store';
 
-const SignUp = () => {
+const SignUp = observer(() => {
     const checkData = () => {
         const {
             first, last, email, password, verify, check,
@@ -194,6 +195,6 @@ const SignUp = () => {
             </div>
         </div>
     );
-};
+});
 
 export default SignUp;
