@@ -46,17 +46,14 @@ class User {
     }
 
     async setEmail(email: string) {
-        console.log(email);
         this.user.email = email;
     }
 
     async setPassword(password: string) {
-        console.log(password);
         this.user.password = password;
     }
 
     async setCheck(check:any) {
-        console.log(check);
         this.user.check = check;
     }
 
@@ -84,7 +81,7 @@ class User {
         localStorage.setItem('token', JSON.stringify(data.token));
         window.location.href = '/';
 
-        this.user.email = '';
+        this.user.name = '';
     }
 
     async signIn(email: string, password: string) {
@@ -96,7 +93,7 @@ class User {
         localStorage.setItem('token', JSON.stringify(data.token));
         window.location.href = '/';
 
-        this.user.email = '';
+        this.user.name = '';
     }
 
     async logout() {
