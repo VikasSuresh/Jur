@@ -16,7 +16,7 @@ const Nav = () => (
                     <span>Dashboard</span>
                 </button>
                 <button type="button" className="btn btn-danger btn-circle">
-                    {Store.fetchName()}
+                    {Store.fetchName}
                 </button>
                 <button
                     type="button"
