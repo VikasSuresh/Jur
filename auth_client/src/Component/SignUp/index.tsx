@@ -1,35 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../CSS/index.css';
 import { emailRegEx, passwordRegex } from '../../Helpers';
 import Store from '../../Store';
 
 const SignUp = () => {
-    const [user, setUser] = useState({
-        first: '',
-        last: '',
-        email: '',
-        password: '',
-        verify: '',
-        check: false,
-    });
-
-    const [show, setShow] = useState({
-        password: true,
-        verify: true,
-    });
-
-    const [err, setError] = useState<String[]>([]);
-
-    const errorHandler = (e: any) => {
-        setError((state) => (
-            e.target.value === '' ? [e.target.id, ...state] : state.filter((el) => el !== e.target.id)
-        ));
-    };
-
     const checkData = () => {
         const {
             first, last, email, password, verify, check,
-        } = user;
+        } = Store.user;
 
         if (first && last && email && password && verify && check) {
             return false;
@@ -40,31 +18,27 @@ const SignUp = () => {
     const submit = async () => {
         const {
             first, last, email, password, verify,
-        } = user;
+        } = Store.user;
 
         if (!emailRegEx.test(email)) {
-            setError((state) => ([
-                ...state,
-                'emailErr',
-            ]));
+            Store.setError('emailErr');
         } else if (password !== verify || !passwordRegex.test(password)) {
-            if (err.filter((el) => el === 'passwordVerifyErr').length === 0) {
-                setError((state) => ([
-                    ...state,
-                    'passwordVerifyErr',
-                ]));
+            if (Store.user.err.filter((el) => el === 'passwordVerifyErr').length === 0) {
+                Store.setError('passwordVerifyErr');
             }
         } else {
             try {
                 Store.signUp(first, last, email, password);
             } catch (error) {
-                setError(['usernameErr']);
+                Store.setError('usernameErr');
             }
         }
     };
 
     const activateSignUp = checkData();
     let errorWhenSubmitting;
+
+    const { err } = Store.user;
 
     if (err.includes('passwordVerifyErr')) {
         errorWhenSubmitting = 'Password Must Have 8-16 char with 1 symbol and Verify - Password must be the same.';
@@ -103,8 +77,8 @@ const SignUp = () => {
                             id="first"
                             placeholder="First Name"
                             onChange={(e) => {
-                                setUser((state: any) => ({ ...state, first: e.target.value }));
-                                errorHandler(e);
+                                Store.setFirst(e.target.value);
+                                Store.errorHandler(e);
                             }}
                         />
                     </div>
@@ -115,8 +89,8 @@ const SignUp = () => {
                             id="last"
                             placeholder="Last Name"
                             onChange={(e) => {
-                                setUser((state: any) => ({ ...state, last: e.target.value }));
-                                errorHandler(e);
+                                Store.setLast(e.target.value);
+                                Store.errorHandler(e);
                             }}
                         />
                     </div>
@@ -132,8 +106,8 @@ const SignUp = () => {
                             id="email"
                             placeholder="Email Address"
                             onChange={(e) => {
-                                setUser((state: any) => ({ ...state, email: e.target.value }));
-                                errorHandler(e);
+                                Store.setEmail(e.target.value);
+                                Store.errorHandler(e);
                             }}
                         />
                     </div>
@@ -144,23 +118,23 @@ const SignUp = () => {
                     </div>
                     <div className="input-group mb-3">
                         <input
-                            type={show.password ? 'password' : 'text'}
+                            type={Store.user.showPassword ? 'password' : 'text'}
                             className={err.includes('password') ? 'form-control is-invalid' : 'form-control'}
                             autoComplete="on"
                             id="password"
                             placeholder="Password"
                             onChange={(e) => {
-                                setUser((state: any) => ({ ...state, password: e.target.value }));
-                                errorHandler(e);
+                                Store.setPassword(e.target.value);
+                                Store.errorHandler(e);
                             }}
                         />
                         <button
                             className="btn bg-white border-start-0 border ms-n3"
                             type="button"
                             id="visibility"
-                            onClick={() => setShow((state: any) => ({ ...state, password: !state.password }))}
+                            onClick={() => Store.setShow()}
                         >
-                            <span className={show.password ? 'Show' : 'Hide'}>{show.password ? 'Show' : 'Hide'}</span>
+                            <span className={Store.user.showPassword ? 'Show' : 'Hide'}>{Store.user.showPassword ? 'Show' : 'Hide'}</span>
                         </button>
                     </div>
                     <div>
@@ -169,34 +143,34 @@ const SignUp = () => {
                     </div>
                     <div className="input-group mb-3">
                         <input
-                            type={show.verify ? 'password' : 'text'}
+                            type={Store.user.showVerify ? 'password' : 'text'}
                             className={err.includes('verifyPassword') ? 'form-control is-invalid' : 'form-control'}
                             autoComplete="on"
                             id="verifyPassword"
                             placeholder="Password"
                             onChange={(e) => {
-                                setUser((state: any) => ({ ...state, verify: e.target.value }));
-                                errorHandler(e);
+                                Store.setVerify(e.target.value);
+                                Store.errorHandler(e);
                             }}
                         />
                         <button
                             className="btn bg-white border-start-0 border ms-n3"
                             type="button"
                             id="visiblity"
-                            onClick={() => setShow((state: any) => ({ ...state, verify: !state.verify }))}
+                            onClick={() => Store.setShowVerify()}
                         >
-                            <span className={show.verify ? 'Show' : 'Hide'}>{show.verify ? 'Show' : 'Hide'}</span>
+                            <span className={Store.user.showVerify ? 'Show' : 'Hide'}>{Store.user.showVerify ? 'Show' : 'Hide'}</span>
                         </button>
                     </div>
 
                     <div className="col-12">
                         <div className="form-check">
                             <input
-                                defaultChecked={user.check}
+                                defaultChecked={Store.user.check}
                                 className="form-check-input"
                                 type="checkbox"
                                 id="gridCheck"
-                                onChange={(e) => setUser((state: any) => ({ ...state, check: e.target.checked }))}
+                                onChange={(e) => Store.setCheck(e.target.checked)}
                             />
                             {'I agree to the '}
                             <a href="/">terms</a>

@@ -24,25 +24,41 @@ interface LoginResponse {
 
 class User {
     user = {
+        first: '',
+        last: '',
         name: '',
         email: '',
         password: '',
+        verify: '',
         check: false,
-        show: true,
+        showPassword: true,
+        showVerify: true,
         err: [''],
     };
 
     constructor() {
         makeObservable(this, {
             user: observable,
+            setFirst: action,
+            setLast: action,
             setEmail: action,
             setPassword: action,
+            setVerify: action,
             setCheck: action,
             setShow: action,
+            setShowVerify: action,
             errorHandler: action,
             setError: action,
             fetchName: computed,
         });
+    }
+
+    async setFirst(first: string) {
+        this.user.first = first;
+    }
+
+    async setLast(last: string) {
+        this.user.last = last;
     }
 
     async setEmail(email: string) {
@@ -53,12 +69,20 @@ class User {
         this.user.password = password;
     }
 
+    async setVerify(verify: string) {
+        this.user.verify = verify;
+    }
+
     async setCheck(check:any) {
         this.user.check = check;
     }
 
     async setShow() {
-        this.user.show = !this.user.show;
+        this.user.showPassword = !this.user.showPassword;
+    }
+
+    async setShowVerify() {
+        this.user.showVerify = !this.user.showVerify;
     }
 
     async errorHandler(e:any) {
